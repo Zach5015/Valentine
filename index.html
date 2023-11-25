@@ -151,8 +151,9 @@
 
 <script>
     function recordResponse(response) {
-        // Store the user's response in a GitHub issue
-        const apiUrl = 'https://api.github.com/repos/Zach5015/HI/issues';
+        const username = 'Zach5015';
+        const repository = 'iloveyou';
+        const apiUrl = `https://api.github.com/repos/${username}/${repository}/issues`;
         const title = 'User Response';
         const body = `User responded with: ${response}`;
 
@@ -164,7 +165,14 @@
             },
             body: JSON.stringify({ title, body }),
         })
- .then(response => response.json())
+        .then(response => {
+            console.log('GitHub API Response:', response);
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error(`GitHub API Error: ${response.statusText}`);
+            }
+        })
         .then(data => {
             console.log('User response recorded on GitHub! Issue:', data);
         })
