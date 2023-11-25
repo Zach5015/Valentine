@@ -44,7 +44,7 @@
     font-size: 16px;
     background-color: #ff80ab;
     color: #fff;
-    border: 2px solid #000; /* Add this line for the white border */
+    border: 2px solid #000; 
     cursor: pointer;
     transition: background-color 0.3s;
         }
@@ -110,7 +110,7 @@
 <body>
 
     <header>
-        <h1>Will You Go Out With Me?</h1>
+        <h1>Will You Go Out With Me???</h1>
     </header>
 
     <main>
@@ -150,66 +150,26 @@
     </main>
 
 <script>
-    function recordResponse(response) {
-        const username = 'Zach5015';
-        const repository = 'iloveyou';
-        const apiUrl = `https://docs.github.com/repos/${username}/${repository}/issues`;
-        const title = 'User Response';
-        const body = `User responded with: ${response}`;
-
-        fetch(apiUrl, {
-            method: 'POST',
-            headers: {
-                'Authorization': 'Bearer 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',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ title, body }),
-        })
-        .then(response => {
-            console.log('GitHub API Response:', response);
-            if (response.ok) {
-                return response.json();
-            } else {
-                throw new Error(`GitHub API Error: ${response.statusText}`);
-            }
-        })
-        .then(data => {
-            console.log('User response recorded on GitHub! Issue:', data);
-        })
-        .catch(error => {
-            console.error('Failed to record user response on GitHub. Error:', error);
-        });
-
-        // Perform other actions based on the user's response
-        if (response === 'Yes') {
-            document.getElementById('popup').style.display = 'flex';
-        } else {
-            moveNoButton();
-        }
-    }
         let noButtonClickCount = 0;
 
         function showResponse(response) {
             if (response === 'Yes') {
-                // Show the popup
                 document.getElementById('popup').style.display = 'flex';
             }
         }
 
         function moveNoButton() {
             const button = document.getElementById('noButton');
-            // Calculate random positions
+          
             const randomX = Math.floor(Math.random() * (window.innerWidth - button.offsetWidth));
             const randomY = Math.floor(Math.random() * (window.innerHeight - button.offsetHeight));
-            // Set button position
+           
             button.style.position = 'absolute';
             button.style.left = `${randomX}px`;
             button.style.top = `${randomY}px`;
 
-            // Increment click count
             noButtonClickCount++;
 
-            // Check if the button has been clicked three times
             if (noButtonClickCount === 3) {
                 showPopupMessage2();
                 // Reset click count
@@ -218,7 +178,6 @@
         }
 
         function showPopupMessage2() {
-            // Show the second popup message for the third click
             document.getElementById('popup-message2').style.display = 'flex';
         }
         
