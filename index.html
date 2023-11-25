@@ -149,17 +149,17 @@
         </div>
     </main>
 
-    <script>
-            function recordResponse(response) {
+<script>
+    function recordResponse(response) {
         // Store the user's response in a GitHub issue
-        const apiUrl = 'https://api.github.com/repos/Zach5015/HI/issues';
+        const apiUrl = 'https://github.com/Zach5015/HI/issues';
         const title = 'User Response';
         const body = `User responded with: ${response}`;
 
         fetch(apiUrl, {
             method: 'POST',
             headers: {
-                'Authorization': 'Bearer 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',
+                'Authorization': 'Bearer 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',
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({ title, body }),
@@ -168,11 +168,11 @@
             if (response.ok) {
                 console.log('User response recorded on GitHub!');
             } else {
-                console.error('Failed to record user response on GitHub.');
+                console.error('Failed to record user response on GitHub. Response:', response);
             }
         })
         .catch(error => console.error('Error:', error));
-        
+
         // Perform other actions based on the user's response
         if (response === 'Yes') {
             document.getElementById('popup').style.display = 'flex';
